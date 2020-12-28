@@ -4,7 +4,7 @@
 
 These hooks are meant to encourage:
 * committing fewer changes
-* constructing a narrative through micro commits leaving a trail of breadcrumbs
+* constructing a narrative through [micro commits](https://lucasr.org/2011/01/29/micro-commits/) leaving a trail of breadcrumbs
 * more frequent pushes of small change sets to the default branch: `main` | `trunk`
 * working at a sustainable pace
 
