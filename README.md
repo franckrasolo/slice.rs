@@ -15,8 +15,8 @@ well when combined with the [TCR](https://medium.com/@kentbeck_7670/test-commit-
 Incremental development also discussed in
 [Elephant Carpaccio](https://web.archive.org/web/20140329231444/http://alistair.cockburn.us/Elephant+Carpaccio)
 and [Elephant Carpaccio V2](https://medium.com/@matteoregazzi/elephant-carpaccio-v2-ba984640ce88) suggests
-aiming for thinner and thinner slices as units of work (see *fig. 1*) that must be propagated to other developers
-and integrated through a continuous integration pipeline at the earliest opportunity.
+aiming for thinner and thinner slices as units of work (see *fig. 1*) that must be propagated at the earliest
+opportunity to other developers and validated through a continuous integration pipeline.
 
 ![Slice Sizes](https://github.com/franckrasolo/slice.rs/raw/633588c6041784ce036c8ec0f60c8698bc171973/.github/assets/scale.png)
 
