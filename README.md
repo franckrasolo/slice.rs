@@ -15,9 +15,9 @@ They rather tyrannically enforce ideas discussed by in
 [Limbo on the Cheap](https://medium.com/@kentbeck_7670/limbo-on-the-cheap-e4cfae840330) and work equally
 well when combined with the [TCR](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864) workflow.
 
-Incremental development also discussed in
+Incremental development, also discussed in
 [Elephant Carpaccio](https://web.archive.org/web/20140329231444/http://alistair.cockburn.us/Elephant+Carpaccio)
-and [Elephant Carpaccio V2](https://medium.com/@matteoregazzi/elephant-carpaccio-v2-ba984640ce88) suggests
+and [Elephant Carpaccio V2](https://medium.com/@matteoregazzi/elephant-carpaccio-v2-ba984640ce88), suggests
 aiming for thinner and thinner slices as units of work (see *fig. 1*) that must be propagated at the earliest
 opportunity to other developers and validated through a continuous integration pipeline.
 
