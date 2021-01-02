@@ -1,0 +1,30 @@
+[package]
+name = "slicers"
+version = "0.1.0"
+authors = ["Franck Rasolo <franckrasolo@users.noreply.github.com>"]
+keywords = ["git"]
+repository = "https://github.com/franckrasolo/slice.rs"
+license = "Apache-2.0"
+readme = "README.md"
+description = """
+pre-commit/pre-push Git hooks that encourage:
+* committing fewer changes
+* constructing a narrative through micro commits leaving a trail of breadcrumbs
+* more frequent pushes of small change sets to the default branch: main | trunk
+* more frequent integration
+* working at a sustainable pace
+"""
+categories = ["git-hooks", "incremental-development", "continuous-integration"]
+edition = "2018"
+
+[lib]
+name = "slicers"
+
+[dependencies]
+anyhow = "1.0.37"
+git2 = { version = "0.13.14", default-features = false, features = [] }
+glob = "0.3.0"
+structopt = "0.3.21"
+
+[dev-dependencies]
+spectral = "0.6.0"
