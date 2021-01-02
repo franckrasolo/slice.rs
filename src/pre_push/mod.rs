@@ -49,9 +49,9 @@ fn parse_range(input: &str) -> Result<String, Error> {
 }
 
 fn create_range(local_oid: &str, remote_oid: &str) -> String {
-    if local_oid == &zero_oid() {           // allow push / skip commits
+    if *local_oid == zero_oid() {           // allow push / skip commits
         String::new()
-    } else if remote_oid == &zero_oid() {   // new branch, examine all commits
+    } else if *remote_oid == zero_oid() {   // new branch, examine all commits
         local_oid.to_string()
     } else {                                // examine all commits
         format!("{}..{}", remote_oid, local_oid)
