@@ -1,0 +1,3 @@
+[submodule "test-repo"]
+	path = tests/resources/test-repo
+	url = https://github.com/githubtraining/hello-world-4-languages.git
