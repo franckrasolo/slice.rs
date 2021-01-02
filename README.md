@@ -1,5 +1,7 @@
 # `slice.rs` <img align="right" width="160" height="120" src="https://github.com/franckrasolo/slice.rs/raw/633588c6041784ce036c8ec0f60c8698bc171973/.github/assets/slicer.png">
 
+[![Apache License 2.0](https://img.shields.io/badge/license-Apache_2.0-blue.svg)](https://github.com/franckrasolo/slice.rs/raw/62f37711724b9a5e6b086fb374b903798bdeb07c/LICENSE)
+
 #### Improve your *trunk-based development* game with `pre-commit` and `pre-push` Git hooks!
 
 These hooks are meant to encourage:
