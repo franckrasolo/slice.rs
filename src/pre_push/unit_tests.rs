@@ -4,34 +4,17 @@ use anyhow::Error;
 use glob::Pattern;
 use spectral::*;
 use spectral::prelude::{ResultAssertions, StrAssertions};
+use test_case::test_case;
 
 use crate::{Config, zero_oid};
 use crate::pre_push::{self, PrePush, Summary};
 
-#[test]
-fn create_range_when_local_branch_is_deleted() {
-    let remote_oid = "903f528740c6689a3213f167f2d22153e8b89cae";
-
-    let actual = pre_push::create_range(&zero_oid(), remote_oid);
-    asserting!("created range").that(&actual).is_equal_to("".to_string());
-}
-
-#[test]
-fn create_range_when_remote_branch_does_not_exist_yet() {
-    let local_oid = "4e5543acfcc15226d7e53409ce7891fe5bf8ca25";
-
-    let actual = pre_push::create_range(local_oid, &zero_oid());
-    asserting!("created range").that(&actual).is_equal_to(local_oid.to_string());
-}
-
-#[test]
-fn create_range_when_revisions_are_not_zero() {
-    let local_oid  = "4e5543acfcc15226d7e53409ce7891fe5bf8ca25";
-    let remote_oid = "903f528740c6689a3213f167f2d22153e8b89cae";
-
+#[test_case(&zero_oid(), "903f52874", ""; "when local branch is deleted")]
+#[test_case("4e5543acf", &zero_oid(), "4e5543acf"; "when remote branch does not exist yet")]
+#[test_case("4e5543acf", "903f52874", "903f52874..4e5543acf"; "when revisions are not zero")]
+fn created_range(local_oid: &str, remote_oid: &str, expected: &str) {
     let actual = pre_push::create_range(local_oid, remote_oid);
-    let expected = format!("{}..{}", remote_oid, local_oid);
-    asserting!("created range").that(&actual).is_equal_to(expected);
+    assert_that!(actual).is_equal_to(expected.to_string());
 }
 
 #[test]
