@@ -13,7 +13,7 @@ fn create_range_when_local_branch_is_deleted() {
     let remote_oid = "903f528740c6689a3213f167f2d22153e8b89cae";
 
     let actual = pre_push::create_range(&zero_oid(), remote_oid);
-    assert_eq!(actual, "", "range: actual (left) vs expected (right)");
+    asserting!("created range").that(&actual).is_equal_to("".to_string());
 }
 
 #[test]
@@ -21,7 +21,7 @@ fn create_range_when_remote_branch_does_not_exist_yet() {
     let local_oid = "4e5543acfcc15226d7e53409ce7891fe5bf8ca25";
 
     let actual = pre_push::create_range(local_oid, &zero_oid());
-    assert_eq!(actual, local_oid, "range: actual (Left) vs expected (Right)");
+    asserting!("created range").that(&actual).is_equal_to(local_oid.to_string());
 }
 
 #[test]
@@ -31,33 +31,35 @@ fn create_range_when_revisions_are_not_zero() {
 
     let actual = pre_push::create_range(local_oid, remote_oid);
     let expected = format!("{}..{}", remote_oid, local_oid);
-    assert_eq!(actual, expected, "range: actual (Left) vs expected (Right)");
+    asserting!("created range").that(&actual).is_equal_to(expected);
 }
 
 #[test]
 fn parse_range_when_input_is_empty() {
     let input = "";
     let error = pre_push::parse_range(input).unwrap_err();
-    assert_eq!(format!("{}", error), parsing_error_for(input), "parsing error");
+    asserting!("parsing error")
+        .that(&format!("{}", error)).is_equal_to(parsing_error_for(input));
 }
 
 #[test]
 fn parse_range_when_input_lacks_some_values() {
     let input = "a b";
     let error = pre_push::parse_range(input).unwrap_err();
-    assert_eq!(format!("{}", error), parsing_error_for(input), "parsing error");
+    asserting!("parsing error")
+        .that(&format!("{}", error)).is_equal_to(parsing_error_for(input));
 }
 
 #[test]
 fn parse_range_when_input_has_all_expected_values() {
     let spec = pre_push::parse_range("a b c d").unwrap();
-    assert_eq!(spec, "d..b", "parsed range");
+    asserting!("parsed range").that(&spec).is_equal_to("d..b".to_string());
 }
 
 #[test]
 fn parse_range_when_input_has_additional_values() {
     let spec = pre_push::parse_range("a b c d e f").unwrap();
-    assert_eq!(spec, "d..b", "parsed range");
+    asserting!("parsed range").that(&spec).is_equal_to("d..b".to_string());
 }
 
 fn parsing_error_for(input: &str) -> String {
