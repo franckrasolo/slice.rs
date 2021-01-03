@@ -58,6 +58,3 @@ impl Config {
 fn zero_oid() -> String {
     "0".repeat(40)
 }
-
-#[cfg(test)]
-extern crate spectral;
