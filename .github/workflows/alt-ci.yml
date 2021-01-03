@@ -25,6 +25,7 @@ jobs:
       - name: Checkout
         id: checkout
         run: |
+          rm -rf "${{ github.workspace }}"
           git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
           echo ::set-output name=hw_isa::$(uname -m)
 
