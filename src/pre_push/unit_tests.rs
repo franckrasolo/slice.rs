@@ -31,28 +31,15 @@ fn parsed_range(input: &str, expected: &str) {
     assert_that!(spec).is_equal_to(expected.to_string());
 }
 
-#[test]
-fn run_hook_when_local_revision_is_not_found() {
-    let local_oid  = "???";
-    let remote_oid = "764ecf6ed4de341203b9c9af94db4ac279c087fe";
-
+#[test_case("???", "764ecf6ed4de341203b9c9af94db4ac279c087fe",
+            "invalid range"; "when local revision is not found"
+)]
+#[test_case("764ecf6ed4de341203b9c9af94db4ac279c087fe", "c89ad800371ebf5300212ddd0523b14534fc99cc",
+            "change set is too large"; "when too many changes are pushed"
+)]
+fn push_rejected(local_oid: &str, remote_oid: &str, expected: &str) {
     let error_message = run_hook(local_oid, remote_oid).unwrap_err().to_string();
-
-    asserting!("push rejected")
-        .that(&error_message)
-        .is_equal_to(format!("invalid range '{}..{}'", remote_oid, local_oid));
-}
-
-#[test]
-fn run_hook_when_too_many_changes_are_pushed() {
-    let local_oid  = "764ecf6ed4de341203b9c9af94db4ac279c087fe";
-    let remote_oid = "c89ad800371ebf5300212ddd0523b14534fc99cc";
-
-    let error_message = run_hook(local_oid, remote_oid).unwrap_err().to_string();
-
-    asserting!("push rejected")
-        .that(&error_message)
-        .contains("change set is too large");
+    assert_that!(error_message).contains(expected);
 }
 
 #[test]
