@@ -19,7 +19,7 @@ fn created_range(local_oid: &str, remote_oid: &str, expected: &str) {
 
 #[test_case("";    "when input is empty")]
 #[test_case("a b"; "when input lacks some args")]
-fn parse_range_errors(input: &str) {
+fn parse_range_fails(input: &str) {
     let error = pre_push::parse_range(input).unwrap_err();
     assert_that!(format!("{}", error)).ends_with(format!("Actual: '{}'", input).as_str());
 }
