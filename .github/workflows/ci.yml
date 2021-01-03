@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.3
         with:
-          submodules: true
+          submodules: recursive
 
       - name: Install Toolchain
         uses: actions-rs/toolchain@v1.0.6
