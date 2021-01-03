@@ -11,6 +11,7 @@
 
 ## Doing
 
+- add configuration for automatic dependency updates
 - add GitHub Action to cross-compile binaries
     * [ ] `x86_64` macOS Catalina / Big Sur
     * [ ] `Universal` binary for macOS Big Sur
