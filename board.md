@@ -10,7 +10,6 @@
 
 ## Doing
 
-- set up [cargo-audit](https://github.com/RustSec/cargo-audit) as GitHub action 
 - add GitHub Action to cross-compile binaries
     * [ ] `x86_64` macOS Catalina / Big Sur
     * [ ] `Universal` binary for macOS Big Sur
@@ -33,3 +32,5 @@
     * [ ] check the number of files changed across commits
     * [ ] check the number of lines changed across commits?
 - add configuration for automatic dependency updates
+- set up [ShiftLeft Scan](https://slscan.io/) as a GitHub action
+- set up [cargo-audit](https://github.com/RustSec/cargo-audit) as a GitHub action
