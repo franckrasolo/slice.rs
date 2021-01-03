@@ -1,4 +1,3 @@
-#![feature(array_map)]
 use glob::Pattern;
 
 pub mod pre_commit;
