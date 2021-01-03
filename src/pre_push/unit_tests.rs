@@ -26,9 +26,9 @@ fn parse_range_errors(input: &str) {
 
 #[test_case("a b c d",     "d..b"; "when input has all expected args")]
 #[test_case("a b c d e f", "d..b"; "when input has additional args")]
-fn parse_range(input: &str, expected: &str) {
+fn parsed_range(input: &str, expected: &str) {
     let spec = pre_push::parse_range(input).unwrap();
-    assert_that(&spec).is_equal_to(expected.to_string());
+    assert_that!(spec).is_equal_to(expected.to_string());
 }
 
 #[test]
