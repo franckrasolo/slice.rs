@@ -4,6 +4,13 @@ name: ShiftLeft Scan
 
 on:
   push:
+    paths-ignore:
+      - '.*ignore'
+      - '**.md'
+      - '**.png'
+      - '**.txt'
+      - '**.yml'
+      - 'LICENSE'
   workflow_dispatch:
 
 jobs:
