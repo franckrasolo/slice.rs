@@ -23,24 +23,25 @@ jobs:
 
     steps:
       - name: Checkout
+        id: checkout
         run: |
           git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
-          ARCH=$(uname -m)
+          echo ::set-output name=hw_isa::$(uname -m)
 
       - name: Cache Cargo Artifacts
         uses: actions/cache@v2
         env:
-          ARCH: ${{ env.ARCH }}
+          CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ steps.checkout.outputs.hw_isa }}-cargo
         with:
           path: |
             ~/.cargo/git
             ~/.cargo/registry
             target
           key: |
-            ${{ matrix.os }}-${{ env.ARCH }}-cargo-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.lock') }}
+            ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
-            ${{ matrix.os }}-${{ env.ARCH }}-cargo-${{ hashFiles('**/Cargo.toml') }}-
-            ${{ matrix.os }}-${{ env.ARCH }}-cargo-
+            ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/Cargo.toml') }}-
+            ${{ env.CACHE_KEY_PREFIX }}-
 
       - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
