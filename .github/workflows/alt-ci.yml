@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout
-        run: git clone --recurse-submodules ${{ github.repository }} .
+        run: git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
 
       - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
