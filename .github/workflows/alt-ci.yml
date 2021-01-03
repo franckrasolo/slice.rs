@@ -29,7 +29,9 @@ jobs:
 
       - name: List File Tree
         run: |
+          set -o xtrace
           echo ">>> pwd: $(pwd)"
+          ls -alh ..
           cargo --version
           rustc --version
           echo ">>> CARGO_MANIFEST_DIR=${CARGO_MANIFEST_DIR}"
