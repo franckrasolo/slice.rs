@@ -23,10 +23,9 @@ jobs:
 
     steps:
       - name: Checkout
-        run: git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
-
-      - name: Environment
-        run: env | sort
+        run: |
+          git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
+          ARCH=$(uname -m)
 
       - name: Cache Cargo Artifacts
         uses: actions/cache@v2
@@ -35,8 +34,11 @@ jobs:
             ~/.cargo/git
             ~/.cargo/registry
             target
-          key: ${{ matrix.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: |
+            ${{ matrix.os }}-${{ env.ARCH }}-cargo-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
+            ${{ matrix.os }}-${{ env.ARCH }}-cargo-${{ hashFiles('**/Cargo.toml') }}-
+            ${{ matrix.os }}-${{ env.ARCH }}-cargo-
             ${{ runner.os }}-cargo-
 
       - name: Clippy
