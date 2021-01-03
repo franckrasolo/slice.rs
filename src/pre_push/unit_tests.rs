@@ -31,22 +31,15 @@ fn parsed_range(input: &str, expected: &str) {
     assert_that!(spec).is_equal_to(expected.to_string());
 }
 
-#[test_case("???", "764ecf6ed4de341203b9c9af94db4ac279c087fe",
-            "invalid range"; "when local revision is not found"
-)]
-#[test_case("764ecf6ed4de341203b9c9af94db4ac279c087fe", "c89ad800371ebf5300212ddd0523b14534fc99cc",
-            "change set is too large"; "when too many changes are pushed"
-)]
-fn push_rejected(local_oid: &str, remote_oid: &str, expected: &str) {
+#[test_case("?????????", commit_15(), "invalid range";   "when local revision is not found")]
+#[test_case(commit_17(), commit_10(), "push fewer changes"; "when pushing too many changes")]
+fn run_hook_fails(local_oid: &str, remote_oid: &str, expected: &str) {
     let error_message = run_hook(local_oid, remote_oid).unwrap_err().to_string();
     assert_that!(error_message).contains(expected);
 }
 
-#[test]
-fn run_hook_when_few_changes_are_pushed() {
-    let local_oid  = "764ecf6ed4de341203b9c9af94db4ac279c087fe";
-    let remote_oid = "971595ab3f742abcf8c8cf839cff2a46a4d95feb";
-
+#[test_case(commit_17(), commit_15(); "when pushing few changes")]
+fn run_hook_passes(local_oid: &str, remote_oid: &str) {
     assert_that!(run_hook(local_oid, remote_oid)).is_ok();
 }
 
@@ -59,3 +52,7 @@ fn run_hook(local_oid: &str, remote_oid: &str) -> Result<Summary, Error> {
     let input = format!("{} {} {} {}", "local_ref", local_oid, "remote_ref", remote_oid);
     PrePush::new(Path::new(&repo_path), config).run_hook(&input)
 }
+
+fn commit_17() -> &'static str { "764ecf6ed4de341203b9c9af94db4ac279c087fe" }
+fn commit_15() -> &'static str { "971595ab3f742abcf8c8cf839cff2a46a4d95feb" }
+fn commit_10() -> &'static str { "c89ad800371ebf5300212ddd0523b14534fc99cc" }
