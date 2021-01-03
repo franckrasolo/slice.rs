@@ -25,6 +25,16 @@ jobs:
       - name: Checkout
         run: git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
 
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
 
