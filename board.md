@@ -11,7 +11,6 @@
 
 ## Doing
 
-- add configuration for automatic dependency updates
 - add GitHub Action to cross-compile binaries
     * [ ] `x86_64` macOS Catalina / Big Sur
     * [ ] `Universal` binary for macOS Big Sur
@@ -33,3 +32,4 @@
     * [ ] pick a name for the binary
     * [ ] check the number of files changed across commits
     * [ ] check the number of lines changed across commits?
+- add configuration for automatic dependency updates
