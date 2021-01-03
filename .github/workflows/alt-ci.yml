@@ -25,6 +25,9 @@ jobs:
       - name: Checkout
         run: git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
 
+      - name: Environment
+        run: env | sort
+
       - name: Cache Cargo Artifacts
         uses: actions/cache@v2
         with:
