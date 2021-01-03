@@ -2,12 +2,12 @@ use std::path::Path;
 
 use anyhow::Error;
 use glob::Pattern;
-use spectral::*;
 use spectral::prelude::{ResultAssertions, StrAssertions};
+use spectral::*;
 use test_case::test_case;
 
-use crate::{Config, zero_oid};
 use crate::pre_push::{self, PrePush, Summary};
+use crate::{zero_oid, Config};
 
 #[test_case(&zero_oid(), "903f52874", ""; "when local branch is deleted")]
 #[test_case("4e5543acf", &zero_oid(), "4e5543acf"; "when remote branch does not exist yet")]
@@ -54,7 +54,7 @@ fn run_hook(local_oid: &str, remote_oid: &str) -> Result<Summary, Error> {
     let repo_path = format!("{}/tests/resources/test-repo", env!("CARGO_MANIFEST_DIR"));
     let config = Config {
         ignored_patterns: vec![Pattern::new("*.yml").unwrap()],
-        change_threshold: 3
+        change_threshold: 3,
     };
     let input = format!("{} {} {} {}", "local_ref", local_oid, "remote_ref", remote_oid);
     PrePush::new(Path::new(&repo_path), config).run_hook(&input)

@@ -6,7 +6,7 @@ pub mod pre_push;
 
 pub struct Config {
     ignored_patterns: Vec<Pattern>,
-    change_threshold: usize
+    change_threshold: usize,
 }
 
 impl Default for Config {

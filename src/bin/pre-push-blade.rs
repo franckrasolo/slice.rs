@@ -5,8 +5,8 @@ use std::time::Instant;
 
 use structopt::StructOpt;
 
-use slicers::Config;
 use slicers::pre_push::PrePush;
+use slicers::Config;
 
 #[derive(Debug, StructOpt)]
 #[structopt(about = "

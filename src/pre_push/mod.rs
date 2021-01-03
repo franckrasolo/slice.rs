@@ -2,9 +2,9 @@ use std::fmt::Write;
 use std::path::Path;
 
 use anyhow::{self, Context, Error, Result};
-use git2::{Delta, DiffDelta, DiffOptions, Repository, Diff};
+use git2::{Delta, Diff, DiffDelta, DiffOptions, Repository};
 
-use crate::{Config, zero_oid};
+use crate::{zero_oid, Config};
 
 pub struct PrePush { repo: Repository, config: Config }
 
@@ -42,7 +42,7 @@ fn parse_range(input: &str) -> Result<String, Error> {
         .collect::<Vec<String>>();
 
     if let [_, local_oid, _, remote_oid] = &args[..] {
-        return Ok(create_range(local_oid, remote_oid))
+        return Ok(create_range(local_oid, remote_oid));
     }
 
     anyhow::bail!("Expected: local_ref local_oid remote_ref remote_oid\n  Actual: '{}'", args.join(" "))
@@ -69,7 +69,7 @@ impl Config {
 
         output.insert_str(0, &format!(">>> inspected changes: {} of {}", count, diff.deltas().count()));
 
-        if count <= self.change_threshold { return Ok(Summary { contents: output }) }
+        if count <= self.change_threshold { return Ok(Summary { contents: output }); }
         anyhow::bail!("This change set is too large: push fewer changes more frequently instead.\n{}", output)
     }
     
