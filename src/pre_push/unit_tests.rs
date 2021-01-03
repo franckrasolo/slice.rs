@@ -17,36 +17,18 @@ fn created_range(local_oid: &str, remote_oid: &str, expected: &str) {
     assert_that!(actual).is_equal_to(expected.to_string());
 }
 
-#[test]
-fn parse_range_when_input_is_empty() {
-    let input = "";
+#[test_case("";    "when input is empty")]
+#[test_case("a b"; "when input lacks some args")]
+fn parse_range_errors(input: &str) {
     let error = pre_push::parse_range(input).unwrap_err();
-    asserting!("parsing error")
-        .that(&format!("{}", error)).is_equal_to(parsing_error_for(input));
+    assert_that!(format!("{}", error)).ends_with(format!("Actual: '{}'", input).as_str());
 }
 
-#[test]
-fn parse_range_when_input_lacks_some_values() {
-    let input = "a b";
-    let error = pre_push::parse_range(input).unwrap_err();
-    asserting!("parsing error")
-        .that(&format!("{}", error)).is_equal_to(parsing_error_for(input));
-}
-
-#[test]
-fn parse_range_when_input_has_all_expected_values() {
-    let spec = pre_push::parse_range("a b c d").unwrap();
-    asserting!("parsed range").that(&spec).is_equal_to("d..b".to_string());
-}
-
-#[test]
-fn parse_range_when_input_has_additional_values() {
-    let spec = pre_push::parse_range("a b c d e f").unwrap();
-    asserting!("parsed range").that(&spec).is_equal_to("d..b".to_string());
-}
-
-fn parsing_error_for(input: &str) -> String {
-    format!("Expected: local_ref local_oid remote_ref remote_oid\n  Actual: '{}'", input)
+#[test_case("a b c d",     "d..b"; "when input has all expected args")]
+#[test_case("a b c d e f", "d..b"; "when input has additional args")]
+fn parse_range(input: &str, expected: &str) {
+    let spec = pre_push::parse_range(input).unwrap();
+    assert_that(&spec).is_equal_to(expected.to_string());
 }
 
 #[test]
