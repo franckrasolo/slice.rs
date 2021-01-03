@@ -29,6 +29,8 @@ jobs:
 
       - name: Cache Cargo Artifacts
         uses: actions/cache@v2
+        env:
+          ARCH: ${{ env.ARCH }}
         with:
           path: |
             ~/.cargo/git
