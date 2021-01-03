@@ -23,20 +23,10 @@ jobs:
 
     steps:
       - name: Checkout
-        run: |
-          git clone --recurse-submodules https://github.com/franckrasolo/slice.rs .
-          git -C tests/resources/test-repo status
-          git -C tests/resources/test-repo log c89ad800371ebf5300212ddd0523b14534fc99cc..764ecf6ed4de341203b9c9af94db4ac279c087fe
-
-      - name: List File Tree
-        run: |
-          set -o xtrace
-          echo ">>> pwd: $(pwd)"
-          ls -alh ..
-          cargo --version
-          rustc --version
-          echo ">>> CARGO_MANIFEST_DIR=${CARGO_MANIFEST_DIR}"
-          ls -alhR
+        uses: actions/checkout@v2.3.3
+        with:
+          path: .
+          submodules: recursive
 
       - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
