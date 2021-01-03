@@ -1,7 +1,7 @@
 ## Backlog
 
 - pre-commit hook
-    * [ ] pick a name for the binary
+    * [x] pick a name for the binary
     * [ ] check the number of lines changed in a single commit
     * [ ] check the number of files changed in a single commit
 - find ways to easily install these hooks into a local repository, ideally automatically
@@ -37,7 +37,7 @@
 - figure out how to organise, layout and configure a Cargo monorepo
 - figure out how to produce multiple binaries
 - pre-push hook
-    * [ ] pick a name for the binary
+    * [x] pick a name for the binary
     * [ ] check the number of files changed across commits
     * [ ] check the number of lines changed across commits?
 - add configuration for automatic dependency updates
