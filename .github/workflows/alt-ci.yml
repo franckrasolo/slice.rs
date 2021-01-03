@@ -28,7 +28,14 @@ jobs:
           submodules: recursive
 
       - name: List File Tree
-        run: ls -alhR
+        run: |
+          echo ">>> pwd: $(pwd)"
+          cargo --version
+          rustc --version
+          echo ">>> CARGO_MANIFEST_DIR=${CARGO_MANIFEST_DIR}"
+          git -C tests/resources/test-repo status
+          git -C tests/resources/test-repo log c89ad800371ebf5300212ddd0523b14534fc99cc..764ecf6ed4de341203b9c9af94db4ac279c087fe
+          ls -alhR
 
       - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
