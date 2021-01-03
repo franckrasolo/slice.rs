@@ -7,7 +7,6 @@ on:
       - '**.md'
       - '**.png'
       - '**.txt'
-      - '**.yml'
       - 'LICENSE'
   workflow_dispatch:
 
