@@ -35,9 +35,9 @@ jobs:
       matrix:
         os:
           - ubuntu-20.04
-#         - ubuntu-18.04
-#         - macos-11.0
-#         - macos-10.15
+          - ubuntu-18.04
+          - macos-11.0
+          - macos-10.15
           - macos-10.13
         toolchain:
           - stable
