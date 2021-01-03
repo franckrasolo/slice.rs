@@ -10,7 +10,16 @@
 
 ## Doing
 
-- add GitHub Action to cross-compile binaries
+- add GitHub Action to integrate across supported OS/architectures
+    > instruction set architectures / operating systems
+    * [ ] `x86_64` macOS Catalina / Big Sur
+    * [ ] `Universal` binary for macOS Big Sur
+    * [ ] `x86_64` Linux
+    * [ ] `x86_64` macOS High Sierra
+    * [ ] `AArch64` M1 macOS Big Sur
+    * [ ] `AArch64` Linux
+- add GitHub Action to cross-compile and publish binaries
+    > instruction set architectures / operating systems
     * [ ] `x86_64` macOS Catalina / Big Sur
     * [ ] `Universal` binary for macOS Big Sur
     * [ ] `x86_64` Linux
