@@ -25,7 +25,6 @@ jobs:
       - name: Checkout
         id: checkout
         run: |
-          rm -rf "${{ github.workspace }}"
           git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
           echo ::set-output name=hw_isa::$(uname -m)
 
@@ -69,3 +68,12 @@ jobs:
         with:
           command: test
           args: --lib
+
+  cleanup:
+    runs-on: self-hosted
+    steps:
+      - name: Clean Up
+        run: |
+          echo ">>> pwd before: $(pwd)"
+          cd "${{ github.workspace }}/.." && rm -rf *
+          echo ">>> pwd after:  $(pwd)"
