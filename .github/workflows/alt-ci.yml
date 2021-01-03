@@ -39,7 +39,6 @@ jobs:
           restore-keys: |
             ${{ matrix.os }}-${{ env.ARCH }}-cargo-${{ hashFiles('**/Cargo.toml') }}-
             ${{ matrix.os }}-${{ env.ARCH }}-cargo-
-            ${{ runner.os }}-cargo-
 
       - name: Clippy
         run: cargo clippy --all-targets --all-features -- -D warnings
