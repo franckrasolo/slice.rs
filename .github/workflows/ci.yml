@@ -1,13 +1,13 @@
 name: CI
 
 on:
-  push:
-    paths-ignore:
-      - '.*ignore'
-      - '**.md'
-      - '**.png'
-      - '**.txt'
-      - 'LICENSE'
+#  push:
+#    paths-ignore:
+#      - '.*ignore'
+#      - '**.md'
+#      - '**.png'
+#      - '**.txt'
+#      - 'LICENSE'
   workflow_dispatch:
 
 env:
