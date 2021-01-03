@@ -1,5 +1,6 @@
 # `slice.rs` <img align="right" width="160" height="120" src="https://github.com/franckrasolo/slice.rs/raw/633588c6041784ce036c8ec0f60c8698bc171973/.github/assets/slicer.png">
 
+[![CI](https://github.com/franckrasolo/slice.rs/workflows/CI/badge.svg)](https://github.com/franckrasolo/slice.rs/actions?query=workflow%3A%22CI%22)
 [![Security Audit](https://github.com/franckrasolo/slice.rs/workflows/Security%20Audit/badge.svg)](https://github.com/franckrasolo/slice.rs/actions?query=workflow%3A%22Security+Audit%22)
 [![ShiftLeft Scan](https://github.com/franckrasolo/slice.rs/workflows/ShiftLeft%20Scan/badge.svg)](https://github.com/franckrasolo/slice.rs/actions?query=workflow%3A%22ShiftLeft+Scan%22)
 [![Apache License 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat&logo=apache&labelColor=30373d)](https://github.com/franckrasolo/slice.rs/blob/main/LICENSE)
