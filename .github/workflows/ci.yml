@@ -10,9 +10,6 @@ on:
       - '**.md'
       - '**.png'
       - 'LICENSE'
-#  pull_request:
-#    branches:
-#      - main
   workflow_dispatch:
 
 env:
