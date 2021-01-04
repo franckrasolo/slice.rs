@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/franckrasolo/slice.rs/workflows/CI/badge.svg)](https://github.com/franckrasolo/slice.rs/actions?query=workflow%3A%22CI%22)
 [![Security Audit](https://github.com/franckrasolo/slice.rs/workflows/Security%20Audit/badge.svg)](https://github.com/franckrasolo/slice.rs/actions?query=workflow%3A%22Security+Audit%22)
+[![dependabot](https://badgen.net/github/dependabot/franckrasolo/slice.rs?icon=dependabot&label=Dependabot&labelColor=30373d&cache=300)](https://github.com/franckrasolo/slice.rs/security/dependabot)
 [![Apache License 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat&logo=apache&labelColor=30373d)](https://github.com/franckrasolo/slice.rs/blob/main/LICENSE)
 
 #### Improve your *trunk-based development* game with `pre-commit` and `pre-push` Git hooks!
