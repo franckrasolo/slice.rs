@@ -31,9 +31,8 @@ jobs:
       - name: Clean Up
         if: ${{ matrix.os == 'macos-10.13' || matrix.os == 'macos-10.15' }}
         run: |
-          echo ">>> pwd before: $(pwd)"
-          cd "${{ github.workspace }}/.." && rm -rvf *
-          echo ">>> pwd after:  $(pwd)"
+          cd "${{ github.workspace }}/.." && rm -rf *
+          mkdir -pv "${{ github.workspace }}" && cd "${{ github.workspace }}"
       - name: Checkout
         id: checkout
         run: |
