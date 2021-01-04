@@ -16,15 +16,6 @@ env:
   RUST_BACKTRACE: 1
 
 jobs:
-  cleanup:
-    runs-on: self-hosted
-    steps:
-      - name: Clean Up
-        run: |
-          echo ">>> pwd before: $(pwd)"
-          cd "${{ github.workspace }}/.." && rm -rf *
-          echo ">>> pwd after:  $(pwd)"
-
   integration:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -37,6 +28,12 @@ jobs:
         toolchain:
           - stable
     steps:
+      - name: Clean Up
+        if: ${{ matrix.os == 'macos-10.13' || matrix.os == 'macos-10.15' }}
+        run: |
+          echo ">>> pwd before: $(pwd)"
+          cd "${{ github.workspace }}/.." && rm -rvf *
+          echo ">>> pwd after:  $(pwd)"
       - name: Checkout
         id: checkout
         run: |
