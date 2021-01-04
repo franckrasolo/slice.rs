@@ -1,16 +1,15 @@
 name: CI
 
 on:
-#  push:
-#    branches:
-#      - main
-#      - 'dependabot/cargo/**'
-#    paths-ignore:
-#      - '.*ignore'
-#      - '**.md'
-#      - '**.png'
-#      - '**.txt'
-#      - 'LICENSE'
+  push:
+    branches:
+      - main
+      - 'dependabot/cargo/**'
+    paths-ignore:
+      - '.*ignore'
+      - '**.md'
+      - '**.png'
+      - 'LICENSE'
 #  pull_request:
 #    branches:
 #      - main
