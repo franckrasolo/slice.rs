@@ -35,7 +35,7 @@ jobs:
         with:
           tag_name:     ${{ env.RELEASE_VERSION }}
           release_name: ${{ env.RELEASE_VERSION }}
-          draft: true
+          draft:        ${{ env.GITHUB_REF == '' }}
 
       - name: Save release bits as artifacts
         run: |
