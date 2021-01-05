@@ -62,20 +62,38 @@ jobs:
         include:
           - build: linux-x86_64
             os: ubuntu-18.04
+            hw_isa: x86_64
             rust: stable
             target: x86_64-unknown-linux-musl
           - build: linux-aarch64
             os: ubuntu-18.04
+            hw_isa: aarch64
             rust: stable
             target: aarch64-unknown-linux-musl
           - build: macos-x86_64
             os: macos-10.13
+            hw_isa: x86_64
             rust: stable
             target: x86_64-apple-darwin
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Cache Cargo Artifacts
+        uses: actions/cache@v2
+        env:
+          CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.hw_isa }}-cargo
+        with:
+          path: |
+            ~/.cargo/git
+            ~/.cargo/registry
+            target
+          key: |
+            ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/Cargo.toml') }}-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ env.CACHE_KEY_PREFIX }}-${{ hashFiles('**/Cargo.toml') }}-
+            ${{ env.CACHE_KEY_PREFIX }}-
 
       - name: Install cross
         run:  cargo install cross
