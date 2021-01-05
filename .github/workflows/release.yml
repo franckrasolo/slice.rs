@@ -96,7 +96,12 @@ jobs:
             ${{ env.CACHE_KEY_PREFIX }}-
 
       - name: Install cross
-        run:  cargo install cross
+#       run:  cargo install cross
+        uses: actions-rs/install@v0.1
+          with:
+            crate: cross
+            version: latest
+            use-tool-cache: true
 
       - name: Get the release download URL
         uses: actions/download-artifact@v2
