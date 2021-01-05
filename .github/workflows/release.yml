@@ -1,0 +1,119 @@
+# credit: https://github.com/BurntSushi/ripgrep/blob/master/.github/workflows/release.yml
+name: release
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+
+jobs:
+  create-release:
+    name: create-release
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Set release version
+        if:   env.RELEASE_VERSION == ''
+        # see https://github.community/t5/GitHub-Actions/How-to-get-just-the-tag-name/m-p/32167/highlight/true#M1027
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          echo ">>> RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
+
+      - name: Create GitHub release
+        id:   release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name:     ${{ env.RELEASE_VERSION }}
+          release_name: ${{ env.RELEASE_VERSION }}
+
+      - name: Save release bits as artifacts
+        run: |
+          mkdir artifacts
+          echo "${{ steps.release.outputs.upload_url }}" > artifacts/release-upload-url
+          echo "${{ env.RELEASE_VERSION }}" > artifacts/release-version
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifacts
+          path: artifacts
+
+  build-release:
+    name: build-release
+    needs: ['create-release']
+    runs-on: ${{ matrix.os }}
+    env:
+      RELEASE_BINARY: target/${{ matrix.target }}/release/pre-push-blade
+      RUST_BACKTRACE: 1
+    strategy:
+      matrix:
+        build: [linux-x86_64, linux-aarch64, macos-x86_64]
+        include:
+          - build: linux-x86_64
+            os: ubuntu-18.04
+            rust: stable
+            target: x86_64-unknown-linux-musl
+          - build: linux-aarch64
+            os: ubuntu-18.04
+            rust: stable
+            target: aarch64-unknown-linux-musl
+          - build: macos-x86_64
+            os: macos-10.13
+            rust: stable
+            target: x86_64-apple-darwin
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install cross
+        run:  cargo install cross
+
+      - name: Get the release download URL
+        uses: actions/download-artifact@v2
+        with:
+          name: artifacts
+          path: artifacts
+
+      - name: Set Release Upload URL and Release Version
+        shell: bash
+        run: |
+          echo "RELEASE_UPLOAD_URL=$(cat artifacts/release-upload-url)" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=$(cat artifacts/release-version)" >> $GITHUB_ENV
+
+          echo ">>> RELEASE_UPLOAD_URL: $RELEASE_UPLOAD_URL"
+          echo ">>>    RELEASE_VERSION: $RELEASE_VERSION"
+
+      - name: Build binary
+        run:  cross build --verbose --release --target ${{ matrix.target }}
+
+      - name: Strip binary (x86_64)
+        if:   matrix.build == 'linux-x86_64' || matrix.build == 'macos-x86_64'
+        run:  strip "${{ env.RELEASE_BINARY }}"
+
+      - name: Strip binary (aarch64)
+        if:   matrix.build == 'linux-aarch64'
+        run: |
+          docker run --rm \
+            --volume "$(pwd)/target:/target:Z" \
+            rustembedded/cross:aarch64-unknown-linux-musl \
+            aarch64-linux-musl-strip \
+            "/${{ env.RELEASE_BINARY }}"
+
+      - name: Rename binary
+        run: |
+          final_binary="pre-push-blade-${{ env.RELEASE_VERSION }}-${{ matrix.build }}"
+          cp -v "${{ env.RELEASE_BINARY }}" "${final_binary}"
+          echo "ASSET=${final_binary}" >> $GITHUB_ENV
+
+      - name: Upload binary
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.RELEASE_UPLOAD_URL }}
+          asset_path: ${{ env.ASSET }}
+          asset_name: ${{ env.ASSET }}
+          asset_content_type: application/octet-stream
