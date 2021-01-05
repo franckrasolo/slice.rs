@@ -123,7 +123,7 @@ jobs:
           echo ">>>    RELEASE_VERSION: $RELEASE_VERSION"
 
       - name: Build binary
-        run:  cross build --verbose --release --target ${{ matrix.target }}
+        run:  cross build --verbose --release --locked --target ${{ matrix.target }}
 
       - name: Strip binary (x86_64)
         if:   matrix.build == 'linux-x86_64' || matrix.build == 'macos-x86_64'
