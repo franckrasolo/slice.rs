@@ -17,14 +17,14 @@ jobs:
         # see https://github.community/t5/GitHub-Actions/How-to-get-just-the-tag-name/m-p/32167/highlight/true#M1027
         run: |
           echo ">>> GITHUB_REF: '${GITHUB_REF}'"
-          echo ">>> GITHUB_REF: '{{ env.GITHUB_REF }}'"
+          echo ">>> GITHUB_REF: '${{ env.GITHUB_REF }}'"
           echo "RELEASE_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - name: Set release version (short SHA)
         if:   env.GITHUB_REF == ''
         run: |
           echo ">>> GITHUB_REF: '${GITHUB_REF}'"
-          echo ">>> GITHUB_REF: '{{ env.GITHUB_REF }}'"
+          echo ">>> GITHUB_REF: '${{ env.GITHUB_REF }}'"
           echo "RELEASE_VERSION=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
 
       - name: Create GitHub release
