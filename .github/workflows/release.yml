@@ -65,16 +65,19 @@ jobs:
             hw_isa: x86_64
             rust: stable
             target: x86_64-unknown-linux-musl
+            upx_args: --best --lzma
           - build: linux-aarch64
             os: ubuntu-18.04
             hw_isa: aarch64
             rust: stable
             target: aarch64-unknown-linux-musl
+            upx_args: --best --lzma
           - build: macos-x86_64
             os: macos-10.13
             hw_isa: x86_64
             rust: stable
             target: x86_64-apple-darwin
+            upx_args: --best
 
     steps:
       - name: Checkout
@@ -137,6 +140,18 @@ jobs:
             rustembedded/cross:aarch64-unknown-linux-musl \
             aarch64-linux-musl-strip \
             "/${{ env.RELEASE_BINARY }}"
+
+      - name: Compress binary (linux-x86_64)
+        if:   matrix.build == 'linux-x86_64'
+        uses: svenstaro/upx-action@v2
+        with:
+          file: ${{ env.RELEASE_BINARY }}
+          args: ${{ matrix.upx_args }}
+          strip: false
+
+      - name: Compress binary (macos-x86_64)
+        if:   matrix.build == 'macos-x86_64'
+        run:  upx ${{ matrix.upx_args }} ${{ env.RELEASE_BINARY }}
 
       - name: Rename binary
         run: |
