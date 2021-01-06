@@ -132,7 +132,7 @@ jobs:
 
       - name: Strip binary (x86_64)
         if:   matrix.build == 'linux-x86_64' || matrix.build == 'macos-x86_64'
-        run:  strip "${{ env.RELEASE_BINARY }}"
+        run:  strip -x "${{ env.RELEASE_BINARY }}"
 
       - name: Strip binary (aarch64)
         if:   matrix.build == 'linux-aarch64'
