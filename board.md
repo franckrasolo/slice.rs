@@ -42,3 +42,4 @@
     * [x] `x86_64` Linux: Ubuntu 18.04 (LTS)
     * [x] `x86_64` macOS High Sierra
     * [x] `AArch64` Linux: Ubuntu 18.04 (LTS)
+- add release step to compress binaries
