@@ -13,11 +13,8 @@
 - add GitHub Action to cross-compile and publish binaries
     > instruction set architectures / operating systems
     * [ ] `x86_64` macOS Catalina / Big Sur
-    * [ ] `x86_64` Linux: Ubuntu 18.04 (LTS)
-    * [ ] `x86_64` macOS High Sierra
     * [ ] `AArch64` M1 macOS Big Sur
     * [ ] `Universal` macOS Big Sur
-    * [ ] `AArch64` Linux: Ubuntu 18.04 (LTS)
 
 ## Done
 
@@ -40,3 +37,8 @@
     * [x] `x86_64` Linux: Ubuntu 18.04 (LTS)
     * [x] `x86_64` macOS Catalina ([self-hosted](https://github.com/actions/virtual-environments/issues/2247))
     * [x] `x86_64` macOS High Sierra ([self-hosted](https://github.com/actions/virtual-environments/issues/2247))
+- add GitHub Action to cross-compile and publish binaries
+    > instruction set architectures / operating systems
+    * [x] `x86_64` Linux: Ubuntu 18.04 (LTS)
+    * [x] `x86_64` macOS High Sierra
+    * [x] `AArch64` Linux: Ubuntu 18.04 (LTS)
