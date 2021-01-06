@@ -118,7 +118,7 @@ jobs:
           name: artifacts
           path: artifacts
 
-      - name: Set Release Upload URL and Release Version
+      - name: Set release upload URL & release version
         shell: bash
         run: |
           echo "RELEASE_UPLOAD_URL=$(cat artifacts/release-upload-url)" >> $GITHUB_ENV
