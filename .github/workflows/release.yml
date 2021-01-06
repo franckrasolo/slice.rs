@@ -147,7 +147,7 @@ jobs:
         if:   matrix.build == 'linux-x86_64' || matrix.build == 'linux-aarch64'
         run: |
           curl -sL https://github.com/upx/upx/releases/download/v3.96/${{ matrix.upx }}.tar.xz \
-            | tar xzvf - --strip-components 1 ${{ matrix.upx }}/upx
+            | tar -xJvf - --strip-components 1 ${{ matrix.upx }}/upx
 
       - name: Compress binary
         run:  upx ${{ matrix.upx_args }} ${{ env.RELEASE_BINARY }}
