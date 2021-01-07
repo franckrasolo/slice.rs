@@ -12,11 +12,6 @@
 
 ## Doing
 
-- add GitHub Action to cross-compile and publish binaries
-    > instruction set architectures / operating systems
-    * [ ] `x86_64` macOS Catalina / Big Sur
-    * [ ] `AArch64` M1 macOS Big Sur
-    * [ ] `Universal` macOS Big Sur
 
 ## Done
 
@@ -45,3 +40,11 @@
     * [x] `x86_64` macOS High Sierra
     * [x] `AArch64` Linux: Ubuntu 18.04 (LTS)
 - add release step to compress binaries
+
+## Blocked
+
+- add GitHub Action to cross-compile and publish binaries
+    > instruction set architectures / operating systems
+    * [ ] `x86_64` macOS Catalina / Big Sur
+    * [ ] `AArch64` M1 macOS Big Sur
+    * [ ] `Universal` macOS Big Sur
