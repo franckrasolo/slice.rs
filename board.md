@@ -5,6 +5,8 @@
     * [ ] check the number of lines changed in a single commit
     * [ ] check the number of files changed in a single commit
 - find ways to easily install these hooks into a local repository, ideally automatically
+- add integration tests for cross-compiled binaries
+- run integration tests of cross-compiled binaries as part of the CD pipeline
 - make `cargo test` produce JUnit XML reports
 - run a [TCR](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864) workflow with [cargo-watch](https://github.com/passcod/cargo-watch)
 
