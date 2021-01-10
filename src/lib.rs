@@ -20,6 +20,8 @@ impl Default for Config {
 impl Config {
     fn default_ignored_patterns() -> Vec<Pattern> {
         let globs = vec![
+            "*.adoc",
+            "*.asciidoc",
             "*.conf",
             "*.csv",
             "*.dhall",
@@ -41,6 +43,7 @@ impl Config {
             ".*config",
             ".*ignore",
             ".*-version",
+            ".gitmodules",
             ".circleci/**",
             ".git/**",
             ".github/**",
@@ -49,6 +52,8 @@ impl Config {
             "**/.env",
             "**/Justfile",
             "**/Makefile",
+            "**/LICENSE",
+            "**/README",
         ];
         globs.iter().map(|glob| Pattern::new(glob).unwrap()).collect()
     }
