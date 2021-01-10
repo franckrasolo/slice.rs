@@ -1,5 +1,7 @@
 ## Backlog
 
+- replace glob with globset
+- add deserialisation of glob patterns
 - pre-commit hook
     * [x] pick a name for the binary
     * [ ] check the number of lines changed in a single commit
