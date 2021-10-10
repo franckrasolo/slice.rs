@@ -33,6 +33,7 @@
 - set up [cargo-audit](https://github.com/RustSec/cargo-audit) as a GitHub action
 - add GitHub Action to integrate across supported OS/architectures
     > instruction set architectures / operating systems
+    * [x] `x86_64` Linux: Ubuntu 20.04 (LTS)
     * [x] `x86_64` Linux: Ubuntu 18.04 (LTS)
     * [x] `x86_64` macOS Big Sur
     * [x] `x86_64` macOS Catalina
