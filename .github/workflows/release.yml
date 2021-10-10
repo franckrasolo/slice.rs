@@ -122,12 +122,13 @@ jobs:
           echo "RELEASE_UPLOAD_URL=$(cat artifacts/release-upload-url)" >> $GITHUB_ENV
           echo "RELEASE_VERSION=$(cat artifacts/release-version)" >> $GITHUB_ENV
 
-      - name: Build binary (x86_64)
-        if:   matrix.build != 'linux-aarch64'
-        run:  cargo build --verbose --release --locked --target ${{ matrix.target }}
+#      - name: Build binary (x86_64)
+#        if:   matrix.build != 'linux-aarch64'
+#        run:  cargo build --verbose --release --locked --target ${{ matrix.target }}
 
-      - name: Build binary (linux-aarch64)
-        if:   matrix.build == 'linux-aarch64'
+      - name: Build binary
+#      - name: Build binary (linux-aarch64)
+#        if:   matrix.build == 'linux-aarch64'
         run:  cross build --verbose --release --locked --target ${{ matrix.target }}
 
       - name: Strip binary (x86_64)
