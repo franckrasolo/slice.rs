@@ -34,7 +34,8 @@
 - add GitHub Action to integrate across supported OS/architectures
     > instruction set architectures / operating systems
     * [x] `x86_64` Linux: Ubuntu 18.04 (LTS)
-    * [x] `x86_64` macOS Catalina ([self-hosted](https://github.com/actions/virtual-environments/issues/2247))
+    * [x] `x86_64` macOS Big Sur
+    * [x] `x86_64` macOS Catalina
     * [x] `x86_64` macOS High Sierra ([self-hosted](https://github.com/actions/virtual-environments/issues/2247))
 - add GitHub Action to cross-compile and publish binaries
     > instruction set architectures / operating systems
