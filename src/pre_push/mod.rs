@@ -63,7 +63,7 @@ impl Config {
         let mut output = String::new();
 
         let count = diff.deltas()
-            .filter( |delta| self.countable(&delta))
+            .filter( |delta| self.countable(delta))
             .inspect(|delta| Config::append(&mut output, delta))
             .count();
 
