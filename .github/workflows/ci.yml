@@ -30,7 +30,7 @@ jobs:
           - stable
     steps:
       - name: Clean Up
-        if: ${{ matrix.os == 'macos-10.13' || matrix.os == 'macos-10.15' }}
+        if: ${{ matrix.os == 'macos-10.13' }}
         run: |
           cd "${{ github.workspace }}/.." && rm -rf *
           mkdir -pv "${{ github.workspace }}" && cd "${{ github.workspace }}"
