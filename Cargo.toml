@@ -24,7 +24,7 @@ name = "slicers"
 anyhow = "1.0.44"
 git2 = { version = "0.13.23", default-features = false, features = [] }
 glob = "0.3.0"
-structopt = "0.3.23"
+structopt = "0.3.25"
 
 [dev-dependencies]
 spectral = "0.6.0"
