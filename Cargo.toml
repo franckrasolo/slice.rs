@@ -28,4 +28,4 @@ structopt = "0.3.23"
 
 [dev-dependencies]
 spectral = "0.6.0"
-test-case = "1.2.0"
+test-case = "2.1.0"
