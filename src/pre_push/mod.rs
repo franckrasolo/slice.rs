@@ -79,10 +79,10 @@ impl Config {
     }
 
     fn countable(&self, delta: &DiffDelta) -> bool {
-        vec![Delta::Added, Delta::Modified, Delta::Deleted].contains(&delta.status())
+        [Delta::Added, Delta::Modified, Delta::Deleted].contains(&delta.status())
             && self.ignored_patterns.iter().all(|p|
-                !p.matches(delta.new_file().path().unwrap().to_string_lossy().as_ref())
-            )
+            !p.matches(delta.new_file().path().unwrap().to_string_lossy().as_ref())
+        )
     }
 
     fn append(output: &mut String, delta: &DiffDelta) {
