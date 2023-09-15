@@ -1,9 +1,9 @@
 name: Security Audit
 on:
-  push:
-    paths:
-      - '**/Cargo.toml'
-      - '**/Cargo.lock'
+#  push:
+#    paths:
+#      - '**/Cargo.toml'
+#      - '**/Cargo.lock'
   workflow_dispatch:
 
 jobs:
