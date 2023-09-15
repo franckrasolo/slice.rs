@@ -7,6 +7,7 @@ on:
       - 'dependabot/cargo/**'
     paths-ignore:
       - '.*ignore'
+      - '.editorconfig'
       - '**.md'
       - '**.png'
       - 'LICENSE'

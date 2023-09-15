@@ -1,0 +1,56 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+tab_width = 4
+indent_size = 4
+indent_style = space
+ij_continuation_indent_size = 4
+
+ij_visual_guides = 90
+max_line_length = 120
+
+ij_smart_tabs = false
+ij_wrap_on_typing = false
+
+[*.rs]
+# Tabs and Indents
+ij_rust_keep_indents_on_empty_lines = false
+
+# Spaces
+## Type parameters
+ij_rust_spaces_around_assoc_type_binding = false
+
+# Wrapping and Braces
+## Keep when reformatting
+ij_rust_keep_line_breaks = true
+ij_rust_allow_one_line_match = false
+ij_rust_preserve_punctuation = false
+## Method declaration parameters
+ij_rust_align_multiline_parameters = true
+ij_rust_align_ret_type = true
+ij_rust_align_where_clause = false
+## Method call arguments
+ij_rust_align_multiline_parameters_in_calls = true
+## Chained method calls
+ij_rust_align_multiline_chained_methods = false
+## Type parameters
+ij_rust_align_type_params = false
+ij_rust_indent_where_clause = true
+ij_rust_align_where_bounds = true
+
+# Blank Lines
+## Keep maximum blank lines
+ij_rust_keep_blank_lines_in_declarations = 2
+ij_rust_keep_blank_lines_in_code = 2
+## Minimum blank lines
+ij_rust_min_number_of_blanks_between_items = 1
+
+# Code Generation
+ij_rust_line_comment_at_first_column = false
+ij_rust_line_comment_add_space = true
+ij_rust_block_comment_at_first_column = false
