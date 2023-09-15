@@ -6,10 +6,15 @@ use git2::{Delta, Diff, DiffDelta, DiffOptions, Repository};
 
 use crate::{zero_oid, Config};
 
-pub struct PrePush { repo: Repository, config: Config }
+pub struct PrePush {
+    repo: Repository,
+    config: Config,
+}
 
 #[derive(Debug)]
-pub struct Summary { pub contents: String }
+pub struct Summary {
+    pub contents: String,
+}
 
 impl PrePush {
     pub fn new(repo_path: &Path, config: Config) -> Self {
@@ -28,7 +33,7 @@ impl PrePush {
         let diff = self.repo.diff_tree_to_tree(
             Some(&remote_commit.tree().unwrap()),
             Some(&local_commit.tree().unwrap()),
-            Some(&mut DiffOptions::new())
+            Some(&mut DiffOptions::new()),
         ).unwrap();
 
         self.config.check(diff)
@@ -72,7 +77,7 @@ impl Config {
         if count <= self.change_threshold { return Ok(Summary { contents: output }); }
         anyhow::bail!("This change set is too large: push fewer changes more frequently instead.\n{}", output)
     }
-    
+
     fn countable(&self, delta: &DiffDelta) -> bool {
         vec![Delta::Added, Delta::Modified, Delta::Deleted].contains(&delta.status())
             && self.ignored_patterns.iter().all(|p|
