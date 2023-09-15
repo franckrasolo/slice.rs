@@ -21,10 +21,10 @@ edition = "2018"
 name = "slicers"
 
 [dependencies]
-anyhow = "1.0.44"
+anyhow = "1.0.75"
 git2 = { version = "0.18.0", default-features = false, features = [] }
-glob = "0.3.0"
-structopt = "0.3.23"
+glob = "0.3.1"
+structopt = "0.3.26"
 
 [dev-dependencies]
 spectral = "0.6.0"
