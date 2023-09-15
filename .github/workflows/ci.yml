@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - '.*ignore'
       - '.editorconfig'
+      - '.envrc'
       - '.justfile'
       - '**.md'
       - '**.png'
