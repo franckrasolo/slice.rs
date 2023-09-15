@@ -11,6 +11,7 @@ on:
       - '.justfile'
       - '**.md'
       - '**.png'
+      - 'flake.*'
       - 'LICENSE'
   workflow_dispatch:
 
