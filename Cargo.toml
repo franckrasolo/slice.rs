@@ -22,10 +22,10 @@ name = "slicers"
 
 [dependencies]
 anyhow = "1.0.44"
-git2 = { version = "0.13.23", default-features = false, features = [] }
+git2 = { version = "0.18.0", default-features = false, features = [] }
 glob = "0.3.0"
 structopt = "0.3.23"
 
 [dev-dependencies]
 spectral = "0.6.0"
-test-case = "1.2.0"
+test-case = "3.1.0"
