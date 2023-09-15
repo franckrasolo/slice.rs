@@ -42,7 +42,7 @@ jobs:
         id: checkout
         run: |
           git clone --recurse-submodules ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY} .
-          echo ::set-output name=hw_isa::$(uname -m)
+          echo "{hw_isa}={$(uname -m)}" >> $GITHUB_OUTPUT
 
       - name: Cache Cargo Artifacts
         uses: actions/cache@v3
