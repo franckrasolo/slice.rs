@@ -9,8 +9,6 @@ on:
     - cron: '0 7-17/5 * * *'
   workflow_dispatch:
 
-permissions: read-all
-
 jobs:
   security-audit:
     runs-on: ubuntu-22.04
