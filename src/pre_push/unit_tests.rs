@@ -1,12 +1,12 @@
 use std::path::Path;
 
 use anyhow::Error;
+use assertor::*;
 use glob::Pattern;
-use spectral::prelude::{ResultAssertions, StrAssertions};
-use spectral::*;
 use test_case::test_case;
 
 use crate::pre_push::{self, PrePush, Summary};
+#[allow(unused_imports)]
 use crate::{zero_oid, Config};
 
 #[test_case(&zero_oid(), "903f52874", ""; "when local branch is deleted")]
