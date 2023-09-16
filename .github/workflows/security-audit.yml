@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: actions-rust-lang/audit@v1
+      - uses: rustsec/audit-check@v1.4.1
         name: Audit Rust Dependencies
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
