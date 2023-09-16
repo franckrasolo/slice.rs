@@ -1,9 +1,10 @@
 name: Security Audit
 on:
-#  push:
-#    paths:
-#      - '**/Cargo.toml'
-#      - '**/Cargo.lock'
+  push:
+    paths:
+      - '.github/workflows/security-audit.yml'
+      - '**/Cargo.toml'
+      - '**/Cargo.lock'
   schedule:
     - cron: '0 7-17/5 * * *'
   workflow_dispatch:
