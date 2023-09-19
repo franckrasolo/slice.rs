@@ -3,13 +3,13 @@ use std::path::Path;
 use std::process::exit;
 use std::time::Instant;
 
-use structopt::StructOpt;
+use clap::Parser;
 
 use slicers::pre_push::PrePush;
 use slicers::Config;
 
-#[derive(Debug, StructOpt)]
-#[structopt(about = "
+#[derive(Debug, Parser)]
+#[clap(about = "
 A Git pre-push hook that encourages working at a sustainable pace.
 As such, it rejects pushes of large change sets to a Git remote.
 ")]
@@ -21,7 +21,7 @@ pub struct Args {
 }
 
 fn main() {
-    let args = Args::from_args();
+    let args = Args::parse();
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
 
