@@ -5,7 +5,7 @@ _targets:
 
 # updates the top-level flake lock file
 @update:
-  nix flake update
+  nix flake update --commit-lock-file --commit-lockfile-summary "update Nix flake inputs"
 
 # runs all tests
 @check:
