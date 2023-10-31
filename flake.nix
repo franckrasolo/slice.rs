@@ -2,11 +2,8 @@
   description = "Rust toolchain";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     rust-overlay.url = "github:oxalica/rust-overlay";
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-      follows = "rust-overlay/nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, rust-overlay }:
