@@ -10,3 +10,7 @@ _targets:
 # runs all tests
 @check:
   cargo test --package slicers --lib pre_push::unit_tests
+
+# runs the pre-push blade
+@pre-push +args:
+  cargo run --package slicers --bin pre-push-blade --quiet -- {{args}}
