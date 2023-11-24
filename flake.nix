@@ -44,10 +44,11 @@
             just
           ];
 
-#          shellHook = ''
+          shellHook = ''
 #            rustup default stable
 #            rustup component add rust-src
-#          '';
+            git submodule update --init
+          '';
         };
       });
     };
