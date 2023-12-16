@@ -14,7 +14,7 @@ pre-commit/pre-push Git hooks that encourage:
 * more frequent integration
 * working at a sustainable pace
 """
-categories = ["git-hooks", "incremental-development", "continuous-integration"]
+categories = ["command-line-utilities", "development-tools"]
 edition = "2021"
 
 [lib]
