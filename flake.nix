@@ -29,13 +29,13 @@
     {
       devShells = forAllSystems ({ pkgs }: {
         default = pkgs.mkShell {
-          buildInputs = with pkgs; [
+          buildInputs = with pkgs; ([
             # packages provided by the Rust overlay include:
             #   cargo, Clippy, cargo-fmt, rustdoc, rustfmt
             rustToolchain
-          ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin (with pkgs; [
+          ] ++ lib.optionals stdenv.isDarwin [
             darwin.apple_sdk.frameworks.Security
-            darwin.libiconv # solves the "missing -liconv" issue when running cargo
+            libiconv # solves the "missing -liconv" issue when running cargo
           ]);
 
           RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
