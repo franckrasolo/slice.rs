@@ -3,6 +3,10 @@ set dotenv-load := true
 _targets:
   @just --list --unsorted --list-heading $'Available targets:\n' --list-prefix "  "
 
+# checks Nix flake inputs
+@flake-check:
+  nix run "github:DeterminateSystems/flake-checker"
+
 # updates the top-level flake lock file
 @update:
   nix flake update --commit-lock-file --commit-lockfile-summary "update Nix flake inputs"
