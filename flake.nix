@@ -45,6 +45,8 @@
           ];
 
           shellHook = ''
+            # health checks for Nix flake inputs
+            nix run "github:DeterminateSystems/flake-checker"
 #            rustup default stable
 #            rustup component add rust-src
             git submodule update --init
