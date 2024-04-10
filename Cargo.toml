@@ -21,7 +21,7 @@ edition = "2021"
 name = "slicers"
 
 [dependencies]
-anyhow = "1.0.81"
+anyhow = "1.0.82"
 git2 = { version = "0.18.3", default-features = false, features = [] }
 glob = "0.3.1"
 clap = { version = "4.5.4", features = ["derive"] }
