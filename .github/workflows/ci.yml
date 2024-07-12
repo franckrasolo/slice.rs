@@ -44,7 +44,7 @@ jobs:
           echo "{hw_isa}={$(uname -m)}" >> $GITHUB_OUTPUT
 
       - name: Cache Cargo Artifacts
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ steps.checkout.outputs.hw_isa }}-cargo
         with:
