@@ -45,8 +45,14 @@
           ];
 
           shellHook = ''
+            echo "
+              Rust Toolchain   = ${pkgs.rustToolchain}/bin
+              Rust Source Path = $RUST_SRC_PATH
+            "
+
             # health checks for Nix flake inputs
             nix run "github:DeterminateSystems/flake-checker"
+
 #            rustup default stable
 #            rustup component add rust-src
             git submodule update --init
