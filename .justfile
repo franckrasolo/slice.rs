@@ -8,6 +8,10 @@ _targets:
 @update:
   nix flake update --commit-lock-file --commit-lockfile-summary "update Nix flake inputs"
 
+# prints repo statistics
+@stats:
+  tokei
+
 # runs all tests
 @check:
   cargo test --package slicers --lib pre_push::unit_tests

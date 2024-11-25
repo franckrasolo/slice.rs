@@ -42,6 +42,7 @@
 
           packages = with pkgs; [
             just
+            tokei
           ];
 
           shellHook = ''
