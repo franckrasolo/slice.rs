@@ -73,7 +73,7 @@ jobs:
             upx: upx-3.96-arm64_linux
             upx_args: --best --lzma
           - build: macos-x86_64
-            os: macos-12
+            os: macos-13
             hw_isa: x86_64
             rust: stable
             target: x86_64-apple-darwin
