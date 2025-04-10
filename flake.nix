@@ -36,6 +36,7 @@
           ] ++ lib.optionals stdenv.isDarwin [
             darwin.apple_sdk.frameworks.Security
             libiconv # solves the "missing -liconv" issue when running cargo
+            zlib
           ]);
 
           RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
