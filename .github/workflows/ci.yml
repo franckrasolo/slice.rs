@@ -26,7 +26,6 @@ jobs:
       matrix:
         os:
           - ubuntu-22.04
-          - ubuntu-20.04
           - macos-14
           - macos-13
         toolchain:
