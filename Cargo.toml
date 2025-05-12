@@ -24,7 +24,7 @@ name = "slicers"
 anyhow = "1.0.98"
 git2 = { version = "0.20.1", default-features = false, features = [] }
 glob = "0.3.2"
-clap = { version = "4.5.37", features = ["derive"] }
+clap = { version = "4.5.38", features = ["derive"] }
 
 [dev-dependencies]
 assertor = "0.0.3"
