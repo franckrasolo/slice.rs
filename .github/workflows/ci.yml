@@ -25,17 +25,12 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-22.04
+          - ubuntu-24.04
+          - macos-15
           - macos-14
-          - macos-13
         toolchain:
           - stable
     steps:
-      - name: Clean Up
-        if: ${{ matrix.os == 'macos-10.13' }}
-        run: |
-          cd "${{ github.workspace }}/.." && rm -rf *
-          mkdir -pv "${{ github.workspace }}" && cd "${{ github.workspace }}"
       - name: Checkout
         id: checkout
         run: |
