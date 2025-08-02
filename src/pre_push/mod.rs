@@ -26,7 +26,7 @@ impl PrePush {
     }
 
     fn check_commits(&self, spec: &str) -> Result<Summary, Error> {
-        let range = self.repo.revparse(spec).with_context(|| format!("invalid range '{}'", spec))?;
+        let range = self.repo.revparse(spec).with_context(|| format!("invalid range '{spec}'"))?;
         let remote_commit = self.repo.find_commit(range.from().unwrap().id())?;
         let local_commit  = self.repo.find_commit(range.to().unwrap().id())?;
 
@@ -59,7 +59,7 @@ fn create_range(local_oid: &str, remote_oid: &str) -> String {
     } else if *remote_oid == zero_oid() {   // new branch, examine all commits
         local_oid.to_string()
     } else {                                // examine all commits
-        format!("{}..{}", remote_oid, local_oid)
+        format!("{remote_oid}..{local_oid}")
     }
 }
 
@@ -72,7 +72,7 @@ impl Config {
             .inspect(|delta| Config::append(&mut output, delta))
             .count();
 
-        output.insert_str(0, &format!(">>> inspected changes: {} of {}", count, diff.deltas().count()));
+        output.insert_str(0, &format!(">>> inspected changes: {count} of {}", diff.deltas().count()));
 
         if count <= self.change_threshold { return Ok(Summary { contents: output }); }
         anyhow::bail!("This change set is too large: push fewer changes more frequently instead.\n{}", output)

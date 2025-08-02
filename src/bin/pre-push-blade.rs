@@ -32,8 +32,8 @@ fn main() {
 
     let code = match result {
         Ok(summary) => { println!("{}", summary.contents); 0 }
-        Err(error)  => { eprintln!("{}", error); 1 }
+        Err(error)  => { eprintln!("{error}"); 1 }
     };
-    println!("\n>>> Inspection completed in {:?}", duration);
+    println!("\n>>> Inspection completed in {duration:?}");
     exit(code)
 }
