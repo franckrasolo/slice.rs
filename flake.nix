@@ -53,7 +53,7 @@
             "
 
             # health checks for Nix flake inputs
-            nix run "github:DeterminateSystems/flake-checker/v0.2.8"
+            nix run https://flakehub.com/f/NixOS/nixpkgs/0.1#flake-checker
 
 #            rustup default stable
 #            rustup component add rust-src
