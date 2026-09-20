@@ -33,8 +33,8 @@
             # packages provided by the Rust overlay include:
             #   cargo, Clippy, cargo-fmt, rustdoc, rustfmt
             rustToolchain
-          ] ++ lib.optionals stdenv.isDarwin [
-            darwin.apple_sdk.frameworks.Security
+          ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
+            # darwin.apple_sdk.frameworks.Security
             libiconv # solves the "missing -liconv" issue when running cargo
             zlib
           ]);
