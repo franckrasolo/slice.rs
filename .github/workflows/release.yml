@@ -27,6 +27,7 @@ jobs:
 
       - name: Create GitHub release
         id:   release
+        # TODO: replace as this action is acrhived
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,7 +43,7 @@ jobs:
           echo "${{ env.RELEASE_VERSION }}" > artifacts/release-version
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: artifacts
           path: artifacts
@@ -81,10 +82,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Cache Cargo Artifacts
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         env:
           CACHE_KEY_PREFIX: ${{ matrix.os }}-${{ matrix.hw_isa }}-cargo
         with:
@@ -100,6 +101,7 @@ jobs:
 
       - name: Install cross
         if:   matrix.os != 'macos-10.13'
+        # TODO: replace as this action is acrhived
         uses: actions-rs/install@v0.1
         with:
           crate: cross
@@ -111,7 +113,7 @@ jobs:
         run:  cargo install cross
 
       - name: Get the release download URL
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: artifacts
           path: artifacts
@@ -160,7 +162,8 @@ jobs:
           echo "ASSET=${final_binary}" >> $GITHUB_ENV
 
       - name: Upload binary
-        uses: actions/upload-release-asset@v1.1.3
+        # TODO: replace with https://github.com/softprops/action-gh-release
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
