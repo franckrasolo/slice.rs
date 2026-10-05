@@ -10,7 +10,7 @@ on:
 jobs:
   create-release:
     name: create-release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Set release version (tag name)
         if:   env.GITHUB_REF != '' && env.RELEASE_VERSION == ''
@@ -57,27 +57,27 @@ jobs:
       RUST_BACKTRACE: 1
     strategy:
       matrix:
-        build: [linux-x86_64, linux-aarch64, macos-x86_64]
+        build: [linux-x86_64, linux-aarch64, macos-aarch64]
         include:
           - build: linux-x86_64
-            os: ubuntu-22.04
+            os: ubuntu-26.04
             hw_isa: x86_64
             rust: stable
             target: x86_64-unknown-linux-musl
-            upx: upx-3.96-amd64_linux
+            upx: upx-5.2.1-amd64_linux
             upx_args: --best --lzma
           - build: linux-aarch64
-            os: ubuntu-22.04
+            os: ubuntu-26.04-arm
             hw_isa: aarch64
             rust: stable
             target: aarch64-unknown-linux-musl
-            upx: upx-3.96-arm64_linux
+            upx: upx-5.2.1-arm64_linux
             upx_args: --best --lzma
-          - build: macos-x86_64
-            os: macos-13
-            hw_isa: x86_64
+          - build: macos-aarch64
+            os: macos-26
+            hw_isa: aarch64
             rust: stable
-            target: x86_64-apple-darwin
+            target: aarch64-apple-darwin
             upx_args: --best
 
     steps:
@@ -100,17 +100,12 @@ jobs:
             ${{ env.CACHE_KEY_PREFIX }}-
 
       - name: Install cross
-        if:   matrix.os != 'macos-10.13'
         # TODO: replace as this action is acrhived
         uses: actions-rs/install@v0.1
         with:
           crate: cross
           version: latest
           use-tool-cache: true
-
-      - name: Install cross (self-hosted)
-        if:   matrix.os == 'macos-10.13'
-        run:  cargo install cross
 
       - name: Get the release download URL
         uses: actions/download-artifact@v8
@@ -149,7 +144,7 @@ jobs:
       - name: Download upx (linux)
         if:   matrix.build == 'linux-x86_64' || matrix.build == 'linux-aarch64'
         run: |
-          curl -sL https://github.com/upx/upx/releases/download/v3.96/${{ matrix.upx }}.tar.xz \
+          curl -sL https://github.com/upx/upx/releases/download/v5.2.1/${{ matrix.upx }}.tar.xz \
             | tar -xJf - --strip-components=1 ${{ matrix.upx }}/upx
 
       - name: Compress binary
